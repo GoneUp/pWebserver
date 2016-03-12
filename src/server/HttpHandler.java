@@ -27,7 +27,7 @@ public class HttpHandler implements Runnable {
 					sb.append(line).append("\n");
 				}
 
-				if (line == null){
+				if (line == null || socket.isClosed()){
 					//socket closed
 					System.out.printf("closing %s\n", Thread
 							.currentThread().toString());
@@ -39,9 +39,7 @@ public class HttpHandler implements Runnable {
 					System.out.printf("new message on %s: %s \n", Thread
 							.currentThread().toString(), line);
 					process(line);
-				}
-				
-			
+				}	
 				
 
 			}

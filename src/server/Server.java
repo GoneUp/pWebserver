@@ -7,17 +7,17 @@ import java.util.*;
 public class Server implements Runnable {
 
 	private ServerSocket socket;
-	private List<Thread> httpCLients;
+	private List<Thread> httpClients;
 
 	public void run() {
 		try {
-			httpCLients = new LinkedList<Thread>();
+			httpClients = new LinkedList<Thread>();
 			socket = new ServerSocket(80);	
 
 			while (true) {
 				Socket s = socket.accept();
 				Thread client = new Thread(new HttpHandler(s));
-				httpCLients.add(client);
+				httpClients.add(client);
 				client.start();
 			}
 
